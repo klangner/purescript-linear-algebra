@@ -1,5 +1,12 @@
 {
-  "name": "purescript-dataframe",
+  "name": "purescript-timeseries",
+  "homepage": "https://github.com/klangner/purescript-linear-algebra",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carldata/purescript-linear-algebra.git"
+  },
+  "description": "Linear Algebra. Matrices, vector spaces etc.",
+  "license": "Apache-2.0",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -1,36 +1,35 @@
-# Data Frame library
+# Linear Algebra for PureScript
 
-[![Build status](https://travis-ci.org/carldata/purescript-dataframe.svg?branch=master)](https://travis-ci.org/carldata/purescript-dataframe)
-<a href="https://pursuit.purescript.org/packages/purescript-dataframe">
-  <img src="https://pursuit.purescript.org/packages/purescript-dataframe/badge"
-       alt="purescript-dataframe on Pursuit">
+[![Build status](https://travis-ci.org/carldata/purescript-linear-algebra.svg?branch=master)](https://travis-ci.org/carldata/purescript-linear-algebra)
+<a href="https://pursuit.purescript.org/packages/purescript-linear-algebra">
+  <img src="https://pursuit.purescript.org/packages/purescript-linear-algebra/badge"
+       alt="purescript-linear-algebra on Pursuit">
   </img>
 </a>
 
-This library should provide basic functionality similar to python numpy/pandas
+Basic functionality for linear algebra. Check **Features** for what is already implemented.
+This is work in progress. It means that API can change anytime.
 
 
 ## Installation
 
 ```
-bower install purescript-dataframe
+bower install purescript-linear-algebra
 ```
 
 ## Features
 
-  * Basic functionality
-    * [x] Slicing DataFrame
-    * [ ] Mapping over DataFrame
-    * [ ] Folding DataFrame
-    * [ ] Rolling window
-    * [ ] groupBy
-  * Input/Output
-    * [ ] Reading data from CSV string
+  * Matrix
+    * [ ] Matrix creation from array
+    * [ ] Matrix addition
+    * [ ] Multiply by scalar
+  * Vector
+    * [ ] Create from array
 
 
 ## Documentation
 
-Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-dataframe).
+Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-linear-algebra).
 
 
 ## Build
@@ -47,13 +46,13 @@ We are happy to receive bug reports, fixes, documentation enhancements,
 and other improvements.
 
 Please report bugs via the
-[github issue tracker](http://github.com/carldata/purescript-dataframe/issues).
+[github issue tracker](http://github.com/carldata/purescript-linear-algebra/issues).
 
 
 
 # Redistributing
 
-purescript-dataframe source code is distributed under the Apache-2.0 license.
+purescript-linear-algebra source code is distributed under the Apache-2.0 license.
 
 **Contributions**
 
