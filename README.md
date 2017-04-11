@@ -1,6 +1,6 @@
 # Linear Algebra for PureScript
 
-[![Build status](https://travis-ci.org/carldata/purescript-linear-algebra.svg?branch=master)](https://travis-ci.org/carldata/purescript-linear-algebra)
+[![Build status](https://travis-ci.org/klangner/purescript-linear-algebra.svg?branch=master)](https://travis-ci.org/klangner/purescript-linear-algebra)
 <a href="https://pursuit.purescript.org/packages/purescript-linear-algebra">
   <img src="https://pursuit.purescript.org/packages/purescript-linear-algebra/badge"
        alt="purescript-linear-algebra on Pursuit">
@@ -20,7 +20,7 @@ bower install purescript-linear-algebra
 ## Features
 
   * Matrix
-    * [ ] Matrix creation from array
+    * [x] Matrix creation from Array
     * [ ] Matrix addition
     * [ ] Multiply by scalar
   * Vector
@@ -46,7 +46,7 @@ We are happy to receive bug reports, fixes, documentation enhancements,
 and other improvements.
 
 Please report bugs via the
-[github issue tracker](http://github.com/carldata/purescript-linear-algebra/issues).
+[github issue tracker](http://github.com/klangner/purescript-linear-algebra/issues).
 
 
 
