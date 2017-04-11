@@ -1,0 +1,9 @@
+/bower_components/
+/node_modules/
+/.pulp-cache/
+/output/
+/.psc*
+/.psa*
+/.history
+/generated-docs
+.purs-repl
