@@ -8,6 +8,9 @@ module LinearAlgebra.Matrix
   , column
   , element
   , row
+  , columns
+  , rows
+  -- * Mapping over matrix
   ) where
 
 import Prelude
@@ -69,3 +72,15 @@ element :: ∀ a. Int -> Int -> Matrix a -> Maybe a
 element r c mat = A.index mat.values ((r*mat.ncols) + c)
 
 
+-- | Return list of rows
+rows :: ∀ a. Matrix a -> Array (Vector a)
+rows mat = do 
+  i <- A.range 0 (mat.nrows - 1)
+  pure $ row i mat
+
+
+-- | List of columns
+columns :: ∀ a. Matrix a -> Array (Vector a)
+columns mat = do 
+  i <- A.range 0 (mat.ncols - 1)
+  pure $ column i mat

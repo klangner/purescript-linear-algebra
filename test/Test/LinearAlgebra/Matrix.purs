@@ -33,4 +33,9 @@ testMatrix = do
     log "Get specific value"
     assert $ M.element 1 2 z2 == Just 6.0
 
+    log "Get list of rows"
+    assert $ M.rows z2 == [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+    log "Get list of columns"
+    assert $ M.columns z2 == [[1.0, 4.0], [2.0, 5.0], [3.0, 6.0]]
     
