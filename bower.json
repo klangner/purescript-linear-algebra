@@ -15,7 +15,8 @@
   ],
   "dependencies": {
     "purescript-prelude": "^3.0.0",
-    "purescript-arrays": "^4.0.1"
+    "purescript-arrays": "^4.0.1",
+    "purescript-tuples": "^4.0.0"
   },
   "devDependencies": {
     "purescript-assert": "^3.0.0",
