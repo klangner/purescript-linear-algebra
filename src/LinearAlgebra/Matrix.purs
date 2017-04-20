@@ -16,7 +16,6 @@ module LinearAlgebra.Matrix
 import Prelude
 import Data.Array as A 
 import Data.Maybe (Maybe(..))
-import Data.Tuple (Tuple, fst, snd)
 import LinearAlgebra.Vector (Vector)
 
 
@@ -48,14 +47,7 @@ fromArray r c vs | r > 0 && c > 0 && r*c == A.length vs = Just {nrows: r, ncols:
 -- | Get specific column as a vector. Index is 0 based
 -- | If the index is out of range then return empty vector
 column :: ∀ a. Int -> Matrix a -> Vector a
-column c mat = snd <<< A.unzip $ A.filter isInColumn ivalues
-  where
-    ivalues :: Array (Tuple Int a)
-    ivalues = A.zip (A.range 0 (A.length mat.values - 1)) mat.values
-
-    isInColumn :: forall b. Tuple Int b -> Boolean
-    isInColumn v = (fst v) `mod` mat.ncols == c
-
+column c mat = A.mapMaybe (\i -> A.index mat.values (i*mat.ncols+c)) (A.range 0 (mat.nrows-1))
 
 
 -- | Get specific row as a vector. Index is 0 based
