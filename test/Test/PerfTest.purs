@@ -1,4 +1,4 @@
-module Test.LinearAlgebra.Benchmarks (benchmarks) where
+module Test.PerfTest (perfTests) where
 
 import Prelude
 import Control.Monad.Eff (Eff)
@@ -10,8 +10,8 @@ import Partial.Unsafe (unsafePartial)
 import LinearAlgebra.Matrix as M
 
 
-benchmarks :: forall eff. Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
-benchmarks = do
+perfTests :: forall eff. Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
+perfTests = do
 
     log "\n# Run Benchmarks"
 
