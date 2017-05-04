@@ -23,8 +23,6 @@ bower install purescript-linear-algebra
     * [x] Matrix creation from Array
     * [ ] Matrix addition
     * [ ] Multiply by scalar
-  * Vector
-    * [ ] Create from array
 
 
 ## Documentation
