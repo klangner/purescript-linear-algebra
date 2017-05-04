@@ -13,12 +13,12 @@ testMatrix :: forall eff. Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
 testMatrix = do
 
     log "Init Matrix test case data"
-    let z1 = unsafePartial $ fromJust $ M.zeros 5 4
+    let z1 = M.zeros 5 4
     let z2 = unsafePartial $ fromJust $ M.fromArray 2 3 [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
 
     log "Create matrix"
-    assert $ z1.nrows == 5
-    assert $ z1.ncols == 4
+    assert $ M.nrows z1 == 5
+    assert $ M.ncols z1 == 4
 
     log "From Array"
     assert $ isNothing (M.fromArray 2 3 [1.0])

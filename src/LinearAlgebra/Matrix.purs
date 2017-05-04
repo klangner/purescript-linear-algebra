@@ -5,6 +5,8 @@ module LinearAlgebra.Matrix
   , replicate
   , zeros
   -- * Access data
+  , ncols
+  , nrows
   , column
   , element
   , row
@@ -20,59 +22,67 @@ import LinearAlgebra.Vector (Vector)
 
 
 -- | Dense Matrix implementation
-type Matrix a = 
-  { nrows :: Int 
-  , ncols :: Int 
-  , values :: Array a 
-  }
+data Matrix a = Dense Int Int (Array a)  -- nrow, ncol, values
+
+-- | Number of rows in matrix
+nrows :: ∀ a. Matrix a -> Int 
+nrows (Dense r _ _) = r
+
+-- | Number of cols in matrix
+ncols :: ∀ a. Matrix a -> Int 
+ncols (Dense _ c _) = c
 
 
 -- | Create array of given dimmension containing replicated value
 replicate :: ∀ a. Int -> Int -> a -> Maybe (Matrix a )
-replicate r c v | r > 0 && c > 0 = Just {nrows: r, ncols: c, values: A.replicate (r * c) v}
+replicate r c v | r > 0 && c > 0 = Just $ Dense r c (A.replicate (r * c) v)
                 | otherwise = Nothing
 
 
 -- | Create array of given dimmension with all values set to 0
-zeros :: Int -> Int -> Maybe (Matrix Number)
-zeros r c = replicate r c 0.0
+-- | 
+zeros :: Int -> Int -> Matrix Number
+zeros r c = Dense r' c' (A.replicate (r' * c') 0.0)
+  where
+    r' = if r > 0 then r else 1
+    c' = if c > 0 then c else 1
 
 
 -- | Create Matrix from Array
 fromArray :: ∀ a. Int -> Int -> Array a -> Maybe (Matrix a)
-fromArray r c vs | r > 0 && c > 0 && r*c == A.length vs = Just {nrows: r, ncols: c, values: vs}
+fromArray r c vs | r > 0 && c > 0 && r*c == A.length vs = Just (Dense r c vs)
                  | otherwise = Nothing
 
 
 -- | Get specific column as a vector. Index is 0 based
 -- | If the index is out of range then return empty vector
 column :: ∀ a. Int -> Matrix a -> Vector a
-column c mat = A.mapMaybe (\i -> A.index mat.values (i*mat.ncols+c)) (A.range 0 (mat.nrows-1))
+column c (Dense nr nc vs) = A.mapMaybe (\i -> A.index vs (i*nc+c)) (A.range 0 (nr-1))
 
 
 -- | Get specific row as a vector. Index is 0 based
 -- | If the index is out of range then return empty vector
 row :: ∀ a. Int -> Matrix a -> Vector a
-row r mat = A.slice i j mat.values
+row r (Dense nr nc vs) = A.slice i j vs
   where
-    i = if r >=0 && r < mat.nrows then r*mat.ncols else 0
-    j = if r >=0 && r < mat.nrows then i+mat.ncols else 0
+    i = if r >=0 && r < nr then r*nc else 0
+    j = if r >=0 && r < nr then i+nc else 0
 
 
 -- | Get specific element. Index is 0 based
 element :: ∀ a. Int -> Int -> Matrix a -> Maybe a
-element r c mat = A.index mat.values ((r*mat.ncols) + c)
+element r c (Dense nr nc vs) = A.index vs ((r*nc) + c)
 
 
 -- | Return list of rows
 rows :: ∀ a. Matrix a -> Array (Vector a)
 rows mat = do 
-  i <- A.range 0 (mat.nrows - 1)
+  i <- A.range 0 (nrows mat - 1)
   pure $ row i mat
 
 
 -- | List of columns
 columns :: ∀ a. Matrix a -> Array (Vector a)
 columns mat = do 
-  i <- A.range 0 (mat.ncols - 1)
+  i <- A.range 0 (ncols mat - 1)
   pure $ column i mat
