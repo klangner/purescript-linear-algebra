@@ -5,6 +5,7 @@ module LinearAlgebra.Vector
   , argmin
   , diff
   , dot
+  , mulScalar
   , sum
   ) where
 
@@ -21,18 +22,18 @@ type Vector = Array
 
 -- | Difference between 2 vectors.
 -- | Vector have to have the same size
-diff :: Vector Number -> Vector Number -> Maybe (Vector Number)
+diff :: Vector Number -> Vector Number -> Vector Number
 diff xs ys 
-  | (A.length xs) /= (A.length ys) = Nothing
-  | otherwise = Just $ A.zipWith (-) xs ys
+  | (A.length xs) /= (A.length ys) = []
+  | otherwise = A.zipWith (-) xs ys
 
 
 -- | Add 2 vectors.
 -- | Vector have to have the same size
-add :: ∀ a. Semiring a => Vector a -> Vector a -> Maybe (Vector a)
+add :: ∀ a. Semiring a => Vector a -> Vector a -> Vector a
 add xs ys 
-  | (A.length xs) /= (A.length ys) = Nothing
-  | otherwise = Just $ A.zipWith (+) xs ys
+  | (A.length xs) /= (A.length ys) = []
+  | otherwise = A.zipWith (+) xs ys
 
 
 -- | Dot product between 2 vectors
@@ -64,3 +65,8 @@ argmin vs = fst $ A.foldl f (Tuple 0 infinity) xs
   where 
     xs = A.mapWithIndex Tuple vs
     f tu tv = if (snd tv) < (snd tu) then tv else tu
+
+
+-- | Multiply vector by scalar
+mulScalar :: Number -> Vector Number -> Vector Number 
+mulScalar d vs = map (_ * d) vs    
