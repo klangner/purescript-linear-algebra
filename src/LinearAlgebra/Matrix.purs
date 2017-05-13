@@ -22,13 +22,15 @@ module LinearAlgebra.Matrix
   , insertCol
   , transpose
   -- * Matrix operations
-  , multiply
+  , add
+  , multiply  
   ) where
 
 import Prelude
 import Data.Array as A 
 import Data.Maybe (Maybe(..), fromMaybe)
-import LinearAlgebra.Vector (Vector, dot)
+import LinearAlgebra.Vector (Vector)
+import LinearAlgebra.Vector as V 
 
 
 -- | Dense Matrix implementation
@@ -174,7 +176,7 @@ multiply' :: Array (Vector Number) -> Array (Vector Number) -> Vector Number
 multiply' rx cy = do 
   r <- rx 
   c <- cy
-  pure $ fromMaybe 0.0 (dot r c)
+  pure $ fromMaybe 0.0 (V.dot r c)
 
 
 -- | Transpose matrix
@@ -182,3 +184,11 @@ transpose :: ∀ a. Matrix a -> Matrix a
 transpose (Dense r c ds) = Dense c r ds'
   where 
     ds' = A.concat $ columns (Dense r c ds) 
+
+
+-- | Add 2 matrices. The should have the same size
+add :: Matrix Number -> Matrix Number -> Matrix Number
+add (Dense r1 c1 vs1) (Dense r2 c2 vs2)
+  | r1 /= r2 || c1 /= c2 = zeros 1 1 
+  | otherwise = Dense r1 c1 $ V.add vs1 vs2
+    
