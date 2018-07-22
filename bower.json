@@ -14,14 +14,14 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "^3.0.0",
-    "purescript-arrays": "^4.0.1",
-    "purescript-globals": "^3.0.0",
-    "purescript-tuples": "^4.0.0"
+    "purescript-prelude": "^4.1.0",
+    "purescript-arrays": "^5.0.0",
+    "purescript-globals": "^4.0.0",
+    "purescript-tuples": "^5.0.0"
   },
   "devDependencies": {
-    "purescript-assert": "^3.0.0",
-    "purescript-console": "^3.0.0",
-    "purescript-psci-support": "^3.0.0"
+    "purescript-assert": "^4.0.0",
+    "purescript-console": "^4.1.0",
+    "purescript-psci-support": "^4.0.0"
   }
 }
