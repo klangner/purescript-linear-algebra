@@ -1,16 +1,16 @@
 module Test.PerfTest (perfTests) where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (log, CONSOLE)
+import Effect (Effect)
+import Effect.Class.Console (log)
 import Data.Array as A
 import Data.Maybe (fromJust)
-import Test.Assert (assert, ASSERT)
+import Test.Assert (assert)
 import Partial.Unsafe (unsafePartial)
 import LinearAlgebra.Matrix as M
 
 
-perfTests :: forall eff. Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
+perfTests :: Effect Unit
 perfTests = do
 
     log "\n# Run Benchmarks"
