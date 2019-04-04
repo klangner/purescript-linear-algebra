@@ -1,5 +1,5 @@
 module LinearAlgebra.Matrix 
- ( Matrix 
+ ( Matrix
   -- * Constructors
   , fromArray
   , fromColumn
@@ -43,6 +43,9 @@ instance showMatrix :: Show a => Show (Matrix a) where
   show (Dense r c ds) =  "Dense Matrix nrows=" <> show r 
                       <> ", ncols=" <> show c
                       <> ", data=" <> show ds
+
+instance functorMatrix :: Functor (Matrix a) where
+  map f (Dense n m vs) = Dense n m (map f vs)
 
 
 -- | Number of rows in matrix
